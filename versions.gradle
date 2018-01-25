@@ -1,0 +1,39 @@
+/**
+ * Shared file between builds so that they can all use the same dependencies and
+ * maven repositories.
+ **/
+
+ext.deps = [:]
+def versions = [:]
+versions.junit = "4.12"
+versions.support = "26.1.0"
+
+def deps = [:]
+
+def build_versions = [:]
+build_versions.min_sdk = 14
+build_versions.target_sdk = 26
+build_versions.build_tool = "26.0.2"
+ext.build_versions = build_versions
+
+def support = [:]
+support.appcompat = "com.android.support:appcompat-v7:$versions.support"
+support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
+support.v4 = "com.android.support:support-v4:$versions.support"
+support.design = "com.android.support:design:$versions.support"
+support.constraint = "com.android.support.constraint:constraint-layout:1.0.2"
+deps.support = support
+
+def test = [:]
+test.runner = "com.android.support.test:runner:1.0.1"
+deps.test = test
+
+def espresso = [:]
+espresso.core = "com.android.support.test.espresso:espresso-core:3.0.1"
+deps.espresso = espresso
+
+deps.junit = "junit:junit:$versions.junit"
+
+ext.deps = deps
+
+
