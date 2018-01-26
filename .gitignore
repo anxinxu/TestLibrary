@@ -56,9 +56,7 @@ freeline.py
 freeline/
 freeline_project_description.json
 
-.gitignore
 .idea/
 TestLibrary.iml
 app/app.iml
-app/libs/
-/REMEMBER.md
+/gradle/wrapper/gradle-wrapper.properties
