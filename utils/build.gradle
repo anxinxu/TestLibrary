@@ -1,34 +1,34 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tool
 
+
     defaultConfig {
-        applicationId "com.anxin.testlibrary"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":recyclerview")
-    implementation project(":utils")
-    implementation deps.support.constraint
-    implementation deps.support.design
-    implementation deps.support.recyclerview
-    implementation deps.support.appcompat
-    testImplementation deps.junit
-    androidTestImplementation deps.test.runner
-    androidTestImplementation deps.espresso.core
+
+    compileOnly deps.support.appcompat
+    testCompileOnly deps.junit
+    androidTestCompileOnly deps.test.runner
+    androidTestCompileOnly deps.espresso.core
 }
