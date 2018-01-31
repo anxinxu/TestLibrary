@@ -24,7 +24,7 @@ import javax.xml.transform.stream.StreamSource;
  */
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class Logger {
+public class Loger {
 
     public static final int V = Log.VERBOSE;
     public static final int D = Log.DEBUG;
@@ -46,19 +46,22 @@ public class Logger {
     }
 
     private static boolean sLogEnable = true;   //log总开关，默认true
+    private static String sGlobalTag = "TAG";
 
-    private static final Config CONFIG = new Config();
     private static final String LINE_SEP = System.getProperty("line.separator");
     private static final String NULL = "null";
     private static final String ARGS = "args";
     private static final String NOTHING = "log nothing";
-    private static final String TAG = "TAG";
 
-    private Logger() {
+    private Loger() {
     }
 
-    public static Config getCONFIG() {
-        return CONFIG;
+    public static void setLogEnable(boolean logEnable) {
+        sLogEnable = logEnable;
+    }
+
+    public static void setGlobalTag(String globalTag) {
+        sGlobalTag = globalTag;
     }
 
     public static void v(String tag, final Object... contents) {
@@ -104,7 +107,7 @@ public class Logger {
     private static void log(@Type int type, @OutputType int outputType, final String tag, final Object... contents) {
         if (!sLogEnable) return;
         String msg = processMsg(outputType, contents);
-        String resultTag = !TextUtils.isEmpty(tag) ? tag : TAG;
+        String resultTag = !TextUtils.isEmpty(tag) ? "[" + sGlobalTag + " -> " + tag + "]" : "[" + sGlobalTag + "]";
         print2Console(type, resultTag, msg);
     }
 
@@ -171,15 +174,4 @@ public class Logger {
         Log.println(type, tag, msg);
     }
 
-    public static class Config {
-
-        private Config() {
-        }
-
-        public Config enableLog(boolean enableLog) {
-            sLogEnable = enableLog;
-            return this;
-        }
-
-    }
 }
