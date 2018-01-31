@@ -60,3 +60,4 @@ freeline_project_description.json
 TestLibrary.iml
 app/app.iml
 /gradle/wrapper/gradle-wrapper.properties
+*.gitignore
