@@ -1,0 +1,65 @@
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tool
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            buildConfigField("boolean", "ENABLE_LOG", "false")
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            buildConfigField("boolean", "ENABLE_LOG", "true")
+            minifyEnabled false
+        }
+
+    }
+
+    resourcePrefix "modulea_"
+
+    sourceSets {
+        main {
+
+            if (isModule.toBoolean()) {
+                java.srcDirs = ['src/main/java', 'src/main/demo/java']
+                res.srcDirs= ['src/main/res','src/main/demo/res']
+                manifest.srcFile 'src/main/demo/AndroidManifest.xml'
+            } else {
+                java.srcDirs = ['src/main/java', 'src/main/lib/java']
+                manifest.srcFile 'src/main/lib/AndroidManifest.xml'
+            }
+        }
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':utils')
+    implementation project(':recyclerview')
+    implementation deps.support.appcompat
+    implementation deps.support.constraint
+    testImplementation deps.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.espresso.core
+
+}
