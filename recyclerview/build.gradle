@@ -21,13 +21,16 @@ android {
         }
     }
 
+    resourcePrefix "recyclerview_"
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly deps.support.appcompat
-    compileOnly deps.support.recyclerview
-    testCompileOnly deps.junit
-    androidTestCompileOnly deps.test.runner
-    androidTestCompileOnly deps.espresso.core
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api deps.support.appcompat
+    api deps.support.recyclerview
+    api deps.support.design
+    testImplementation deps.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.espresso.core
 }

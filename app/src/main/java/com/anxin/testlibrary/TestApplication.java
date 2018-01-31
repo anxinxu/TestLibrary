@@ -2,7 +2,7 @@ package com.anxin.testlibrary;
 
 import android.app.Application;
 
-import com.anxin.utils.Logger;
+import com.anxin.utils.Loger;
 
 /**
  * Created by anxin on 2018/1/30.
@@ -15,7 +15,8 @@ public class TestApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.getCONFIG().enableLog(BuildConfig.DEBUG);
-        Logger.d(TAG, this, "onCreate", BuildConfig.DEBUG);
+        Loger.setLogEnable(BuildConfig.ENABLE_LOG);
+        Loger.setGlobalTag("testLibrary");
+        Loger.d(TAG, "onCreate() -> ");
     }
 }

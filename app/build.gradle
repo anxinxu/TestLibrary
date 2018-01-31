@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'TestLibrary'
+            keyPassword 'ywzq1314'
+            storeFile file('/Users/anxin/AndroidStudioProjects/keystores/android.jks')
+            storePassword 'ywzq1314'
+        }
+    }
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tool
-
     defaultConfig {
         applicationId "com.anxin.testlibrary"
         minSdkVersion build_versions.min_sdk
@@ -14,16 +21,26 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            buildConfigField("boolean", "ENABLE_LOG", "false")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField("boolean", "ENABLE_LOG", "true")
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":recyclerview")
-    implementation project(":utils")
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':recyclerview')
+    implementation project(':utils')
+    if (!isModule.toBoolean()) {
+        implementation project(':modulea')
+        implementation project(':moduleb')
+    }
     implementation deps.support.constraint
     implementation deps.support.design
     implementation deps.support.recyclerview
