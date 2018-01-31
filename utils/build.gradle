@@ -27,6 +27,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation deps.support.v4
     testCompileOnly deps.junit
     androidTestCompileOnly deps.test.runner
     androidTestCompileOnly deps.espresso.core
