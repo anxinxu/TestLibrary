@@ -1,0 +1,12 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':annotation')
+    implementation deps.auto.service
+    implementation deps.auto.common
+    implementation deps.javapoet
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

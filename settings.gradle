@@ -1,1 +1,1 @@
-include ':app', ':recyclerview', ':utils', ':modulea', ':moduleb'
+include ':app', ':recyclerview', ':utils', ':modulea', ':moduleb', ':annotation', ':annotation-compiler'

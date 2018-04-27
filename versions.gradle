@@ -13,7 +13,7 @@ def deps = [:]
 def build_versions = [:]
 build_versions.min_sdk = 14
 build_versions.target_sdk = 26
-build_versions.build_tool = "26.0.2"
+build_versions.build_tool = "27.0.3"
 ext.build_versions = build_versions
 
 def support = [:]
@@ -22,6 +22,7 @@ support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
 support.v4 = "com.android.support:support-v4:$versions.support"
 support.design = "com.android.support:design:$versions.support"
 support.constraint = "com.android.support.constraint:constraint-layout:1.0.2"
+support.annotations = "com.android.support:support-annotations:$versions.support"
 deps.support = support
 
 def test = [:]
@@ -33,6 +34,12 @@ espresso.core = "com.android.support.test.espresso:espresso-core:3.0.1"
 deps.espresso = espresso
 
 deps.junit = "junit:junit:$versions.junit"
+
+deps.javapoet = 'com.squareup:javapoet:1.10.0'
+deps.auto = [
+        'service': 'com.google.auto.service:auto-service:1.0-rc4',
+        'common' : 'com.google.auto:auto-common:0.10'
+]
 
 ext.deps = deps
 
